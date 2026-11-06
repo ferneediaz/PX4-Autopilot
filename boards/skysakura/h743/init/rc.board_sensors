@@ -1,0 +1,25 @@
+#!/bin/sh
+#
+# board specific sensors init
+#------------------------------------------------------------------------------
+
+board_adc start
+
+# Internal SPI4 ICM-42688-P
+icm42688p -s -b 4 -R 12 start
+
+# Internal SPI1 IIM-42652
+iim42652 -s -b 1 -R 12 start
+
+# Internal I2C1 ICP-201xx: the first probe after a cold power-up fails
+if ! icp201xx -I -b 1 start
+then
+	usleep 100000
+	icp201xx -I -b 1 start
+fi
+
+# Internal SPI1 DPS310
+dps310 -s -b 1 start
+
+# Internal I2C1 IST8310
+ist8310 -I -b 1 -R 2 start

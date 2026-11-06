@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# board specific defaults
+#------------------------------------------------------------------------------
+
+# CRSF/ELRS receiver on the RC port (UART4)
+param set-default RC_CRSF_PRT_CFG 300
+
+# The board has no 5V rail sense line
+param set-default CBRK_SUPPLY_CHK 894281
